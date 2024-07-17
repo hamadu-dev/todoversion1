@@ -1,8 +1,9 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import styles from "./AddTodo.module.css";
-import { useState } from "react";
+import todoStore from "../store/todo-items-store";
 
 const AddTodo = ({onAddTodoHandler}) => {
+  const todoCtx = useContext(todoStore);
   // const [todo, setTodo] = useState("");
   // const [todoDate, setTodoDate] = useState("");
   const todo = useRef();
@@ -45,7 +46,7 @@ const AddTodo = ({onAddTodoHandler}) => {
               todoDate.current.value="";
               console.log(todo)
 
-              onAddTodoHandler(todoNameu,todoDateu);
+              todoCtx.todoAdd(todoNameu,todoDateu);
               // setTodo("");
               // setTodoDate("");
             }}

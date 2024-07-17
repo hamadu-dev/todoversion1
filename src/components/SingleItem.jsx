@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./SingleItem.module.css";
+import todoStore from "../store/todo-items-store";
 
 const SingleItem = ({ todoItem, onDeleteHandler }) => {
+  const todoCtx = useContext(todoStore)
   return (
     <div className={`${styles["kg-row"]} row`}>
       <div className="col-4">{todoItem.todoName}</div>
@@ -10,7 +12,7 @@ const SingleItem = ({ todoItem, onDeleteHandler }) => {
         <button
           type="button"
           className={`btn btn-danger ${styles["kg-button"]}`}
-          onClick={()=>{onDeleteHandler(todoItem.id)}}
+          onClick={()=>{todoCtx.todoDelete(todoItem.id)}}
         >
           Delete
         </button>
